@@ -1,0 +1,13 @@
+---
+- name: puppetmaster
+  hostname: puppetmaster.vagrant.local
+  box: centos/7 
+  ram: 4096
+  ip: 192.168.33.11 
+  provisioning: ./puppet-config.sh
+- name: puppetclient1
+  hostname: puppetclient1.vagrant.local
+  box: centos/7 
+  ram: 1024
+  ip: 192.168.33.12 
+  provisioning: ./puppet-client-config.sh
