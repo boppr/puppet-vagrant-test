@@ -51,6 +51,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       srv.vm.box = servers["box"]
       srv.vm.network "private_network", ip: servers["ip"]
       srv.vm.hostname = servers["hostname"]
+      if servers["name"] == "puppetmaster"
+        srv.vm.synced_folder "environments", "/etc/puppetlabs/code/environments", type: "nfs"
+      end
       srv.vm.provider :virtualbox do |vb|
         vb.name = servers["name"]
         vb.memory = servers["ram"]
