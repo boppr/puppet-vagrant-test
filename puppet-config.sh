@@ -1,14 +1,23 @@
 # !/bin/bash
 
-#sudo rpm -ih http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
-sudo rpm -i http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-sudo yum -y update
-sudo yum -y install puppetserver
+#sudo rpm -i http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+#sudo yum -y update
+#sudo yum -y install puppetserver
 
+#muctst2 proxies
+#export https_proxy=http://10.200.208.250:3128
+#export http_proxy=http://10.200.208.250:3128#
+#sudo echo 'Acquire::http::proxy "http://10.200.254.23:3128";' >> /etc/apt/apt.conf
+
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+sudo apt-get  update
+sudo apt-get install puppetserver -y
+sudo apt-get autoremove -y
 
 cat <<EOF >> /etc/puppetlabs/puppet/puppet.conf
 [master]
-    certname = puppetmaster.vagrant.local
+    certname = puppet.vagrant.local
     ca_name = 'Puppet CA generated on puppetmaster.vagrant.local'
     reports = files
     #reporturl = https://localhost:443/reports/upload
@@ -21,5 +30,7 @@ cat <<EOF >> /etc/puppetlabs/puppet/puppet.conf
     autosign = true
 EOF
 
-sudo systemctl enable puppetserver
-sudo systemctl start puppetserver
+#sudo systemctl enable puppetserver
+#sudo systemctl start puppetserver
+#service puppetserver start
+

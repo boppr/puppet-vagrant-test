@@ -1,9 +1,33 @@
 # !/bin/bash
 
-#sudo rpm -ih http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
-sudo rpm -i http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-sudo yum -y update
-sudo yum -y install puppet
+#sudo rpm -i http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+#sudo yum -y update
+#sudo yum -y install puppet
+
+case `lsb_release` in
+16.04)
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+;;
+
+14.04)
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
+sudo dpkg -i puppetlabs-release-pc1-trusty.deb
+;;
+
+12.04)
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-precise.deb
+sudo dpkg -i puppetlabs-release-pc1-precise.deb
+;;
+
+*)
+echo "wos???"
+;;
+esac
+
+sudo apt-get update
+sudo apt-get install puppet-agent -y
+sudo apt-get autoremove -y
 
 cat << EOF > /etc/puppetlabs/puppet/puppet.conf
 # This file can be used to override the default puppet settings.
@@ -20,7 +44,7 @@ pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
 codedir = /etc/puppetlabs/code
 
 [main]
-    server = puppetmaster
+    server = puppet
     # The Puppet log directory.
     # The default value is '$vardir/log'.
     logdir = /var/log/puppet
@@ -48,6 +72,5 @@ codedir = /etc/puppetlabs/code
 EOF
 
 
-
-sudo systemctl enable puppet
-sudo systemctl start puppet
+#sudo systemctl enable puppet
+#sudo systemctl start puppet
