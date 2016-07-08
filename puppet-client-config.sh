@@ -4,7 +4,9 @@
 #sudo yum -y update
 #sudo yum -y install puppet
 
-case `lsb_release` in
+sudo apt-get remove --purge puppet*
+
+case `lsb_release -r -s` in
 16.04)
 wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
 sudo dpkg -i puppetlabs-release-pc1-xenial.deb
@@ -57,6 +59,8 @@ codedir = /etc/puppetlabs/code
     # The default value is '$confdir/ssl'.
     ssldir = $vardir/ssl
 
+    environment = development
+
 [agent]
     # The file in which puppetd stores a list of the classes
     # associated with the retrieved configuratiion.  Can be loaded in
@@ -71,6 +75,6 @@ codedir = /etc/puppetlabs/code
     localconfig = $vardir/localconfig
 EOF
 
-
+sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
 #sudo systemctl enable puppet
 #sudo systemctl start puppet

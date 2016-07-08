@@ -1,29 +1,29 @@
 ---
 - name: puppet
   hostname: puppet.vagrant.local
-  box: ubuntu/trusty64 
-  ram: 4096
-  ip: 192.168.33.10 
+  box: ubuntu/trusty64
+  ram: 2048
+  ip: 192.168.33.10
   provisioning: ./puppet-config.sh
-  sharedfolders: false
+  DisableSharedFolders: false
 - name: puppetclient1204
-  hostname: puppetclient1.vagrant.local
+  hostname: puppetclient12.04
   box: ubuntu/precise64
   ram: 1024
-  ip: 192.168.33.11 
+  ip: 192.168.33.11
   provisioning: ./puppet-client-config.sh
-  sharedfolders: true
+  DisableSharedFolders: true
 - name: puppetclient1404
-  hostname: puppetclient1.vagrant.local
+  hostname: puppetclient1404.vagrant.local
   box: ubuntu/trusty64
   ram: 1024
-  ip: 192.168.33.12 
+  ip: 192.168.33.12
   provisioning: ./puppet-client-config.sh
-  sharedfolders: true
+  DisableSharedFolders: true
 - name: puppetclient1604
-  hostname: puppetclient1.vagrant.local
+  hostname: puppetclient1604.vagrant.local
   box: ubuntu/xenial64
   ram: 1024
-  ip: 192.168.33.13 
+  ip: 192.168.33.13
   provisioning: ./puppet-client-config.sh
-  sharedfolders: true
+  DisableSharedFolders: true
