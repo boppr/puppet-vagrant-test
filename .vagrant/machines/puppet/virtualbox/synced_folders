@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"disabled":false,"guestpath":"/vagrant","hostpath":"/root/puppet-vagrant-test","__vagrantfile":true},"vagrant-cache":{"id":"vagrant-cache","guestpath":"/tmp/vagrant-cache","hostpath":"/root/.vagrant.d/cache/ubuntu/trusty64","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/vagrant":{"disabled":false,"guestpath":"/vagrant","hostpath":"/root/puppet-vagrant-test","__vagrantfile":true}}}

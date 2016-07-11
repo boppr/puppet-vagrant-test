@@ -57,8 +57,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #  srv.vm.synced_folder "environments", "/etc/puppetlabs/code/environments", type: "nfs"
       #end
       #config.vm.synced_folder ".", "/vagrant", disabled: true
-#      config.vm.synced_folder ".", "/vagrant", disabled: servers["DisableSharedFolders"]
-      config.vm.synced_folder ".", "/vagrant", disabled: "true"
+      config.vm.synced_folder ".", "/vagrant", disabled: servers["DisableSharedFolders"]
+      #config.vm.synced_folder ".", "/vagrant", disabled: "true"
       srv.vm.provider :virtualbox do |vb|
         vb.name = servers["name"]
         vb.memory = servers["ram"]
