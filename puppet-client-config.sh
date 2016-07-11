@@ -4,6 +4,9 @@
 #sudo yum -y update
 #sudo yum -y install puppet
 
+echo 'client script'
+
+
 sudo apt-get remove --purge puppet*
 sudo apt-get autoremove -y
 
@@ -31,7 +34,7 @@ esac
 sudo apt-get update
 sudo apt-get install puppet-agent -y
 
-cat << EOF > /etc/puppetlabs/puppet/puppet.conf
+sudo cat << EOF > /etc/puppetlabs/puppet/puppet.conf
 # This file can be used to override the default puppet settings.
 # See the following links for more details on what settings are available:
 # - https://docs.puppetlabs.com/puppet/latest/reference/config_important_settings.html
