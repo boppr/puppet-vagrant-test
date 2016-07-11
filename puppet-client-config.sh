@@ -5,6 +5,7 @@
 #sudo yum -y install puppet
 
 sudo apt-get remove --purge puppet*
+sudo apt-get autoremove -y
 
 case `lsb_release -r -s` in
 16.04)
@@ -29,7 +30,6 @@ esac
 
 sudo apt-get update
 sudo apt-get install puppet-agent -y
-sudo apt-get autoremove -y
 
 cat << EOF > /etc/puppetlabs/puppet/puppet.conf
 # This file can be used to override the default puppet settings.

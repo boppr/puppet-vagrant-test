@@ -33,8 +33,8 @@ echo "wos???"
 ;;
 esac
 
-#sudo apt-get  update
-#sudo apt-get install puppetserver git -y
+sudo apt-get  update
+sudo apt-get install puppetserver git -y
 
 sudo cat <<EOF >> /etc/puppetlabs/puppet/puppet.conf
 [master]
@@ -54,11 +54,12 @@ EOF
 sudo /bin/sed -i "s/JAVA_ARGS=\"-Xms2g -Xmx2g -XX:MaxPermSize=256m\"/JAVA_ARGS=\"-Xms1g -Xmx1g -XX:MaxPermSize=128m\"/" /etc/default/puppetserver
 
 sudo rm -fr /etc/puppetlabs/code/environments
+sudo rm -fr /vagrant/environments/*
 sudo ln -s /vagrant/environments/ /etc/puppetlabs/code/
 
-#sudo service puppetserver start
+sudo service puppetserver start
 
-#sudo /opt/puppetlabs/puppet/bin/gem install r10k
+sudo /opt/puppetlabs/puppet/bin/gem install r10k
 
 sudo mkdir -p /etc/puppetlabs/r10k
 sudo cat <<EOF > /etc/puppetlabs/r10k/r10k.yaml
@@ -79,7 +80,6 @@ private_key: '/root/.ssh/id_rsa'
     basedir: '/etc/puppetlabs/code/environments'
 EOF
 
-#sudo cat <<EOF > /opt/puppetlabs/server/data/puppetserver/id_rsa.pub
 sudo cat <<EOF > /root/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCY3l4WnbECxTHs3BYCkk+1OAwmRsWrr0Z9uzFZBUt4xVZb/zOEOFlk8NByJErXFgIjdctgsTlR35OB8Szx+i6HXzfFVgX36XOkwxjRkaTNMr7TuXc8Fn41p9Eqf21aKyN7kfk+wqkGXPSvJOUkFUAq22BVtPKYAlaennqOgX3XxmEH/YQqKaeRKfZ1KjnIwWhd7SgYRNy0t5JC5cgCn3Bki3vJW5Vivn2/KujXikOgVzZyFL1cuz5ODSoxLq7CfOyvVrkOIldKNTRMADGwW/kVTtfrSbvqxituXWOj8TV84drOKefgU/RqWPSEY7Gl8UpnEIEgtOOytO/UjnefvMxX puppet@muctst2.elster.de
 EOF

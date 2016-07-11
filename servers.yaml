@@ -4,7 +4,7 @@
   box: ubuntu/trusty64
   ram: 2048
   ip: 192.168.33.10
-  provisioning: ./puppet-config.sh
+  provisioning: ./puppet-server-config.sh
   DisableSharedFolders: false
 - name: puppetclient1204
   hostname: puppetclient12.04
