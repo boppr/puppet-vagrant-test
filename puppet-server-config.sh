@@ -1,15 +1,5 @@
 # !/bin/bash
-
 echo 'server script'
-
-#sudo rpm -i http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-#sudo yum -y update
-#sudo yum -y install puppetserver
-
-#proxies
-#export https_proxy=http://10.200.208.250:3128
-#export http_proxy=http://10.200.208.250:3128#
-#sudo echo 'Acquire::http::proxy "http://10.200.254.23:3128";' >> /etc/apt/apt.conf
 
 sudo apt-get remove --purge puppet* -y
 sudo apt-get autoremove -y
@@ -127,3 +117,5 @@ sudo bash -c "ssh-keyscan -t rsa gitlab01.muctst2.elster.de >> /root/.ssh/known_
 sudo rm -fr /opt/puppetlabs/r10k/cache/*
 
 sudo /opt/puppetlabs/puppet/bin/r10k deploy environment
+
+sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet

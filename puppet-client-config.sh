@@ -1,11 +1,5 @@
 # !/bin/bash
-
-#sudo rpm -i http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-#sudo yum -y update
-#sudo yum -y install puppet
-
 echo 'client script'
-
 
 sudo apt-get remove --purge puppet*
 sudo apt-get autoremove -y
@@ -79,5 +73,3 @@ codedir = /etc/puppetlabs/code
 EOF
 
 sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
-#sudo systemctl enable puppet
-#sudo systemctl start puppet
