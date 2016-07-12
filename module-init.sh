@@ -14,9 +14,9 @@ else
     exit 1
 fi
 
-#vagrant up
+vagrant up
 vagrant ssh puppet -c "puppet module generate $USER-$modname"
 vagrant ssh puppet -c "mv $modname /vagrant/environments/development/modules/"
-vagrant ssh puppet -c "ln -s environments/development/modules/$modname $modname"
+vagrant ssh puppet -c "ln -s /vagrant/environments/development/modules/$modname /vagrant/$modname"
 vagrant ssh puppet -c "/bin/sed -i \"s/#spaceholder/include $modname/\" /vagrant/environments/development/site/profile/manifests/puppetclient.pp"
 

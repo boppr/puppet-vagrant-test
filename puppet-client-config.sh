@@ -1,7 +1,7 @@
 # !/bin/bash
 echo 'client script'
 
-sudo apt-get remove --purge puppet*
+sudo apt-get remove --purge 'puppet*' -y
 sudo apt-get autoremove -y
 
 case `lsb_release -r -s` in
@@ -43,7 +43,7 @@ pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
 codedir = /etc/puppetlabs/code
 
 [main]
-    server = puppet
+    server = puppet.vagrant.local
     # The Puppet log directory.
     # The default value is '$vardir/log'.
     logdir = /var/log/puppet
@@ -72,4 +72,4 @@ codedir = /etc/puppetlabs/code
     localconfig = $vardir/localconfig
 EOF
 
-sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
+[ -e /usr/bin/puppet ] || sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet

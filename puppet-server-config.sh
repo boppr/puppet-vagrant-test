@@ -1,7 +1,7 @@
 # !/bin/bash
 echo 'server script'
 
-sudo apt-get remove --purge puppet* -y
+sudo apt-get remove --purge 'puppet*' -y
 sudo apt-get autoremove -y
 
 case `lsb_release -r -s` in
@@ -30,7 +30,7 @@ sudo apt-get install puppetserver git -y
 
 sudo cat <<EOF >> /etc/puppetlabs/puppet/puppet.conf
 [master]
-    certname = puppet
+    certname = puppet.vagrant.local
     ca_name = 'Puppet CA generated on puppetmaster.vagrant.local'
     reports = files
     #reporturl = https://localhost:443/reports/upload
@@ -67,8 +67,9 @@ private_key: '/root/.ssh/id_rsa'
   :my-org:
     #remote: 'git@github.com:$_Insert GitHub Organization Here_$/$_Insert GitHub Repository That Will Be Used For Your Puppet Code Here_$'
     #remote: git@gitlab01.muctst2.elster.de:puppet/project1.git
-    remote: git@gitlab01.muctst2.elster.de:puppet/control-repo01.git
+    #remote: git@gitlab01.muctst2.elster.de:puppet/control-repo01.git
     #remote: http://gitlab01.muctst2.elster.de/puppet/control-repo01.git
+    remote: https://github.com/boppr/control-repo01.git
     basedir: '/etc/puppetlabs/code/environments'
 EOF
 
@@ -118,4 +119,5 @@ sudo rm -fr /opt/puppetlabs/r10k/cache/*
 
 sudo /opt/puppetlabs/puppet/bin/r10k deploy environment
 
-sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
+[ -e /usr/bin/puppet ] || sudo ln -s /opt/puppetlabs/bin/puppet /usr/bin/puppet
+[ -e /usr/bin/r10k ] || sudo ln -s /opt/puppetlabs/puppet/bin/r10k /usr/bin/r10k
