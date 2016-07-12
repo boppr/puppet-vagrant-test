@@ -40,9 +40,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.domain_name = "vagrant.local"
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
-    #config.proxy.http     = "http://10.200.208.250:3128/"
-    #config.proxy.https    = "http://10.200.208.250:3128/"
-    config.proxy.no_proxy = "localhost,127.0.0.1,.muctst2.elster.de"
+    config.proxy.http     = "http://proxy:3128/"
+    config.proxy.https    = "http://proxy:3128/"
+    config.proxy.no_proxy = "localhost,127.0.0.1,.vagrant.local"
   end
 
   # Iterate through entries in YAML file
@@ -51,8 +51,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       srv.vm.box = servers["box"]
       srv.vm.network "private_network", ip: servers["ip"]
       #srv.vm.hostname = servers["name"] + '.' + domain
-      srv.vm.hostname = servers["name"]
-      #srv.vm.hostname = servers["name"] + ".vagrant.local"
+      #srv.vm.hostname = servers["name"]
+      srv.vm.hostname = servers["name"] + ".vagrant.local"
       config.vm.synced_folder ".", "/vagrant", disabled: servers["DisableSharedFolders"]
       config.vm.provision "shell", path: servers["provisioning"]
       srv.vm.provider :virtualbox do |vb|
